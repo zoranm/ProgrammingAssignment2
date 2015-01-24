@@ -1,11 +1,11 @@
-## This two functions are used to perform inverse matrix computaton 
+## These two functions are used to perform inverse matrix computaton 
 ## while making use of caching to improve efficiency of potentially time-consuming computations. 
-## The first function defines a list of functions to manipulate inverse matrices, while the second
-## function performs inverse matrix computation using solve function
+## The first function defines a list of anonymous functions to manipulate inverse matrices and 
+## the second one  performs inverse matrix computation using R solve function
 ## Note that these examples closely follow the solution pattern provided in the assignment example
 
 ## This function defines a list of functions in support of storing and managing cache
-## area storing an inverse matrix data. The function makes use of the scoping rules 
+## area for storing an inverse matrix data. The function makes use of the scoping rules 
 ## of the R language and how they can be used to preserve state inside of an R object
 
 makeCacheMatrix <- function(x = matrix()) {
@@ -27,7 +27,12 @@ makeCacheMatrix <- function(x = matrix()) {
 ## compute inverse of the matrix.
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+    
+    ## Return a matrix that is the inverse of 'x'. 
+    ## The function first checks whether the inverse matrix has already been computed. 
+    ## If so, it gets the inverse funtion from the cache and skips the computation. 
+    ## Otherwise, it computes the inverse matrix and sets its value in the cache via 
+    ## the setinv function.
     
     im <- x$getinv()
     if(!is.null(im)) {
